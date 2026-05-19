@@ -22,22 +22,19 @@
             min-height: 100vh;
         }
 
-        /* Background Effects */
+        /* Background */
         #stars, #crystals { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
         .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 4s infinite; }
         @keyframes twinkle { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
         .crystal {
             position: absolute;
-            font-size: 2.5rem;
-            animation: float 12s infinite linear;
-            opacity: 0.15;
-            filter: drop-shadow(0 0 20px var(--crystal));
+            font-size: 2.8rem;
+            animation: float 15s infinite linear;
+            opacity: 0.18;
+            filter: drop-shadow(0 0 25px var(--crystal));
         }
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-100vh) rotate(720deg); } }
 
         .hero {
             height: 100vh;
@@ -47,50 +44,41 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            background: linear-gradient(rgba(10,10,31,0.7), rgba(20,10,40,0.85)),
+            background: linear-gradient(rgba(10,10,31,0.75), rgba(30,10,50,0.9)),
                         url('https://images.unsplash.com/photo-1616588587684-9b4e1e1e5e5f?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover;
         }
 
         .hero-content h1 {
             font-family: 'Cinzel Decorative', cursive;
-            font-size: clamp(3.5rem, 12vw, 10rem);
+            font-size: clamp(3.8rem, 13vw, 11rem);
             line-height: 0.85;
             background: linear-gradient(135deg, #ffd700, #ffaa00, #ff4d00, #c026d3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 60px rgba(255,215,0,0.8);
-            animation: titleGlow 4s ease-in-out infinite alternate;
+            text-shadow: 0 0 70px rgba(255,215,0,0.9);
         }
 
         .hero-content .name {
-            font-size: clamp(5rem, 16vw, 14rem);
+            font-size: clamp(5.5rem, 18vw, 15rem);
             font-weight: 900;
-            background: linear-gradient(180deg, #ffffff, #ffd700, #ff8800);
+            background: linear-gradient(180deg, #fff, #ffd700, #ff6600);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: nameFloat 6s ease-in-out infinite;
+            animation: nameFloat 7s ease-in-out infinite;
         }
 
-        @keyframes titleGlow {
-            from { text-shadow: 0 0 40px #ffd700; }
-            to { text-shadow: 0 0 80px #ff00aa, 0 0 120px #ff4d00; }
-        }
-        @keyframes nameFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-25px); }
+        @keyframes nameFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+
+        .subtitle { 
+            font-size: 1.6rem; 
+            letter-spacing: 0.6em; 
+            color: #67e8f9; 
+            margin-bottom: 30px;
         }
 
-        .subtitle {
-            font-size: 1.4rem;
-            letter-spacing: 0.5em;
-            color: #67e8f9;
-            margin: 20px 0 40px;
-            text-transform: uppercase;
-        }
-
-        /* Visual Gallery */
+        /* Visual Cards */
         .visuals {
-            padding: 80px 20px;
+            padding: 100px 20px 80px;
             background: #0f0b1f;
             position: relative;
             z-index: 1;
@@ -98,145 +86,130 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         .card {
-            height: 380px;
+            height: 420px;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            border: 3px solid rgba(240, 192, 64, 0.4);
-            transition: all 0.4s;
+            border: 4px solid rgba(240, 192, 64, 0.5);
+            transition: all 0.5s;
         }
         .card:hover {
-            transform: scale(1.05) rotate(2deg);
-            border-color: var(--gold2);
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.5);
+            transform: scale(1.08);
+            border-color: #ffd700;
+            box-shadow: 0 0 80px rgba(255, 215, 0, 0.6);
         }
 
-        .card img, .card::before {
-            position: absolute;
-            inset: 0;
+        .card img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             transition: all 0.6s;
         }
-        .card:hover img { transform: scale(1.15); }
+        .card:hover img { transform: scale(1.12); }
 
         .card-label {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 30px 20px 20px;
-            font-size: 1.4rem;
+            background: linear-gradient(transparent, rgba(0,0,20,0.95));
+            padding: 35px 20px 25px;
             text-align: center;
             font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.7rem;
+            text-shadow: 0 0 15px black;
         }
 
         footer {
             text-align: center;
-            padding: 60px 20px;
-            font-size: 1.1rem;
+            padding: 80px 20px 40px;
+            font-size: 1.3rem;
             color: #ffd700;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.2em;
         }
-
-        .sword-left, .sword-right {
-            position: absolute;
-            font-size: 6rem;
-            opacity: 0.1;
-            z-index: 0;
-            animation: swordFloat 15s infinite linear;
-        }
-        .sword-left { left: 5%; top: 30%; transform: rotate(-30deg); }
-        .sword-right { right: 5%; top: 50%; transform: rotate(30deg); }
     </style>
 </head>
 <body>
 
-    <!-- Background -->
     <div id="stars"></div>
     <div id="crystals"></div>
 
     <!-- HERO -->
     <section class="hero">
-        <div class="sword-left">🗡️</div>
-        <div class="sword-right">🗡️</div>
-        
         <div class="hero-content">
-            <p class="subtitle">✦ Légende Éveillée ✦</p>
+            <p class="subtitle">✦ LÉGENDE ÉVEILLÉE ✦</p>
             <h1>JOYEUX<br>ANNIVERSAIRE</h1>
             <div class="name">DAVID</div>
-            <p style="margin-top:30px; font-size:1.5rem; color:#a5b4fc;">Level Up • New Game +</p>
         </div>
     </section>
 
-    <!-- Visual Cards -->
+    <!-- VISUAL GAME CARDS -->
     <section class="visuals">
         <div class="grid">
+            <!-- Final Fantasy -->
             <div class="card">
                 <img src="https://picsum.photos/id/1015/800/600" alt="Final Fantasy">
-                <div class="card-label">💎 CRISTAL ULTIME</div>
+                <div class="card-label">💎 FINAL FANTASY</div>
             </div>
+
+            <!-- Fire Emblem -->
             <div class="card">
-                <img src="https://picsum.photos/id/201/800/600" alt="Fire Emblem">
-                <div class="card-label">🔥 EMBLÈME DE FEU</div>
+                <img src="https://picsum.photos/id/1074/800/600" alt="Fire Emblem">
+                <div class="card-label">🔥 FIRE EMBLEM</div>
             </div>
+
+            <!-- Chocobo -->
             <div class="card">
-                <img src="https://picsum.photos/id/866/800/600" alt="Chocobo">
-                <div class="card-label">🐤 CHOCOBO DORÉ</div>
+                <img src="https://picsum.photos/id/201/800/600" alt="Chocobo">
+                <div class="card-label">🐤 CHOCOBO</div>
             </div>
+
+            <!-- Hero Battle -->
             <div class="card">
-                <img src="https://picsum.photos/id/1016/800/600" alt="Hero">
+                <img src="https://picsum.photos/id/866/800/600" alt="RPG Hero">
                 <div class="card-label">⚔️ HÉROS LÉGENDAIRE</div>
             </div>
         </div>
     </section>
 
     <footer>
-        Que ton année soit remplie de victoires épiques et de cristaux brillants ✨<br>
-        Final Fantasy • Fire Emblem • RPG Forever
+        QUE TA NOUVELLE ANNÉE SOIT UNE GRANDE QUÊTE ÉPIQUE ✨
     </footer>
 
     <script>
         // Stars
-        const stars = document.getElementById('stars');
-        for (let i = 0; i < 250; i++) {
-            const s = document.createElement('div');
-            s.className = 'star';
-            const size = Math.random() * 3 + 0.8;
-            s.style.cssText = `
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 220; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.cssText = `
                 width: ${size}px; height: ${size}px;
                 top: ${Math.random()*100}%; left: ${Math.random()*100}%;
-                animation-delay: ${Math.random()*5}s;
+                animation-delay: ${Math.random()*4}s;
             `;
-            stars.appendChild(s);
+            starsContainer.appendChild(star);
         }
 
         // Floating Crystals
-        const crystals = document.getElementById('crystals');
-        const crystalEmojis = ['💎','🔷','🧿','✨','🔮'];
-        for (let i = 0; i < 18; i++) {
+        const crystalsContainer = document.getElementById('crystals');
+        const emojis = ['💎','🔮','🗡️','🛡️','✨'];
+        for (let i = 0; i < 16; i++) {
             const c = document.createElement('div');
             c.className = 'crystal';
-            c.textContent = crystalEmojis[Math.floor(Math.random()*crystalEmojis.length)];
+            c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             c.style.left = Math.random() * 100 + '%';
-            c.style.animationDuration = (Math.random() * 12 + 10) + 's';
-            c.style.animationDelay = '-' + Math.random() * 15 + 's';
-            crystals.appendChild(c);
+            c.style.animationDuration = (12 + Math.random() * 10) + 's';
+            c.style.animationDelay = '-' + Math.random() * 20 + 's';
+            crystalsContainer.appendChild(c);
         }
-
-        // Confetti on click
-        document.addEventListener('click', () => {
-            confetti = window.confetti || (() => {});
-            confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-        });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 </html>
