@@ -9,8 +9,6 @@
         :root {
             --gold: #f0c040;
             --gold2: #ffd700;
-            --fire: #ff4d00;
-            --crystal: #67e8f9;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,19 +20,19 @@
             min-height: 100vh;
         }
 
-        /* Background */
+        /* Background Effects */
         #stars, #crystals { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
         .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 4s infinite; }
         @keyframes twinkle { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
         .crystal {
             position: absolute;
-            font-size: 2.8rem;
-            animation: float 15s infinite linear;
-            opacity: 0.18;
-            filter: drop-shadow(0 0 25px var(--crystal));
+            font-size: 3rem;
+            animation: floatCrystal 18s infinite linear;
+            opacity: 0.2;
+            filter: drop-shadow(0 0 30px #67e8f9);
         }
-        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-100vh) rotate(720deg); } }
+        @keyframes floatCrystal { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-100vh) rotate(720deg); } }
 
         .hero {
             height: 100vh;
@@ -50,35 +48,35 @@
 
         .hero-content h1 {
             font-family: 'Cinzel Decorative', cursive;
-            font-size: clamp(3.8rem, 13vw, 11rem);
+            font-size: clamp(4rem, 13vw, 11rem);
             line-height: 0.85;
             background: linear-gradient(135deg, #ffd700, #ffaa00, #ff4d00, #c026d3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 70px rgba(255,215,0,0.9);
+            text-shadow: 0 0 80px rgba(255,215,0,0.9);
         }
 
         .hero-content .name {
-            font-size: clamp(5.5rem, 18vw, 15rem);
+            font-size: clamp(6rem, 18vw, 16rem);
             font-weight: 900;
             background: linear-gradient(180deg, #fff, #ffd700, #ff6600);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: nameFloat 7s ease-in-out infinite;
+            animation: nameFloat 8s ease-in-out infinite;
         }
-
-        @keyframes nameFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+        @keyframes nameFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-35px); } }
 
         .subtitle { 
-            font-size: 1.6rem; 
-            letter-spacing: 0.6em; 
+            font-size: 1.8rem; 
+            letter-spacing: 0.8em; 
             color: #67e8f9; 
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #67e8f9;
         }
 
         /* Visual Cards */
         .visuals {
-            padding: 100px 20px 80px;
+            padding: 100px 20px 120px;
             background: #0f0b1f;
             position: relative;
             z-index: 1;
@@ -86,53 +84,54 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            max-width: 1300px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .card {
-            height: 420px;
-            border-radius: 12px;
+            height: 460px;
+            border-radius: 16px;
             overflow: hidden;
             position: relative;
-            border: 4px solid rgba(240, 192, 64, 0.5);
-            transition: all 0.5s;
+            border: 5px solid rgba(240, 192, 64, 0.6);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            transition: all 0.6s;
         }
         .card:hover {
-            transform: scale(1.08);
+            transform: scale(1.1) rotate(3deg);
             border-color: #ffd700;
-            box-shadow: 0 0 80px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 100px rgba(255, 215, 0, 0.7);
         }
 
         .card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.6s;
+            transition: transform 0.8s;
         }
-        .card:hover img { transform: scale(1.12); }
+        .card:hover img { transform: scale(1.15); }
 
         .card-label {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,20,0.95));
-            padding: 35px 20px 25px;
+            background: linear-gradient(transparent, rgba(10,10,30,0.95));
+            padding: 40px 20px 30px;
             text-align: center;
             font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.7rem;
-            text-shadow: 0 0 15px black;
+            font-size: 1.9rem;
+            text-shadow: 0 0 20px black;
         }
 
         footer {
             text-align: center;
-            padding: 80px 20px 40px;
-            font-size: 1.3rem;
+            padding: 60px 20px;
+            font-size: 1.4rem;
             color: #ffd700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
         }
     </style>
 </head>
@@ -153,62 +152,54 @@
     <!-- VISUAL GAME CARDS -->
     <section class="visuals">
         <div class="grid">
-            <!-- Final Fantasy -->
             <div class="card">
-                <img src="https://picsum.photos/id/1015/800/600" alt="Final Fantasy">
+                <img src="https://wallpapercave.com/wp/wp4065889.jpg" alt="Final Fantasy Crystal">
                 <div class="card-label">💎 FINAL FANTASY</div>
             </div>
 
-            <!-- Fire Emblem -->
             <div class="card">
-                <img src="https://picsum.photos/id/1074/800/600" alt="Fire Emblem">
+                <img src="https://images.alphacoders.com/134/1340583.jpg" alt="Fire Emblem">
                 <div class="card-label">🔥 FIRE EMBLEM</div>
             </div>
 
-            <!-- Chocobo -->
             <div class="card">
-                <img src="https://picsum.photos/id/201/800/600" alt="Chocobo">
+                <img src="https://wallpapercave.com/wp/wp4065898.jpg" alt="Chocobo">
                 <div class="card-label">🐤 CHOCOBO</div>
             </div>
 
-            <!-- Hero Battle -->
             <div class="card">
-                <img src="https://picsum.photos/id/866/800/600" alt="RPG Hero">
-                <div class="card-label">⚔️ HÉROS LÉGENDAIRE</div>
+                <img src="https://images8.alphacoders.com/134/1340580.jpg" alt="Epic Battle">
+                <div class="card-label">⚔️ HÉROS MYTHIQUE</div>
             </div>
         </div>
     </section>
 
     <footer>
-        QUE TA NOUVELLE ANNÉE SOIT UNE GRANDE QUÊTE ÉPIQUE ✨
+        QUE TA QUÊTE CONTINUE AVEC GLOIRE ✨
     </footer>
 
     <script>
         // Stars
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 220; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            const size = Math.random() * 3 + 1;
-            star.style.cssText = `
-                width: ${size}px; height: ${size}px;
-                top: ${Math.random()*100}%; left: ${Math.random()*100}%;
-                animation-delay: ${Math.random()*4}s;
-            `;
-            starsContainer.appendChild(star);
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 250; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
+            const size = Math.random() * 3.5 + 1;
+            s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*5}s;`;
+            stars.appendChild(s);
         }
 
-        // Floating Crystals
-        const crystalsContainer = document.getElementById('crystals');
-        const emojis = ['💎','🔮','🗡️','🛡️','✨'];
-        for (let i = 0; i < 16; i++) {
+        // Floating Crystals & Emblems
+        const crystals = document.getElementById('crystals');
+        const icons = ['💎','🔮','🗡️','🛡️','🔥','✨','🐤'];
+        for (let i = 0; i < 22; i++) {
             const c = document.createElement('div');
             c.className = 'crystal';
-            c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            c.textContent = icons[Math.floor(Math.random()*icons.length)];
             c.style.left = Math.random() * 100 + '%';
-            c.style.animationDuration = (12 + Math.random() * 10) + 's';
-            c.style.animationDelay = '-' + Math.random() * 20 + 's';
-            crystalsContainer.appendChild(c);
+            c.style.animationDuration = (14 + Math.random() * 12) + 's';
+            c.style.animationDelay = '-' + Math.random() * 25 + 's';
+            crystals.appendChild(c);
         }
     </script>
 </body>
