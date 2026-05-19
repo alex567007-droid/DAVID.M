@@ -4,219 +4,239 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joyeux Anniversaire David !</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+        :root {
+            --gold: #f0c040;
+            --gold2: #ffd700;
+            --fire: #ff4d00;
+            --crystal: #67e8f9;
+        }
         
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Press Start 2P', system-ui;
-            background: linear-gradient(180deg, #0a0a1f 0%, #1a0f2e 100%);
+            background: #0a0a1f;
             color: #e0d0ff;
+            font-family: 'Cinzel', serif;
             overflow-x: hidden;
+            min-height: 100vh;
         }
-        
-        .hero-bg {
-            background-image: 
-                linear-gradient(rgba(10, 10, 31, 0.75), rgba(26, 15, 46, 0.85)),
-                url('https://images.unsplash.com/photo-1616588587684-9b4e1e1e5e5f?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
+
+        /* Background Effects */
+        #stars, #crystals { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 4s infinite; }
+        @keyframes twinkle { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        .crystal {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: float 12s infinite linear;
+            opacity: 0.15;
+            filter: drop-shadow(0 0 20px var(--crystal));
         }
-        
-        .ff-crystal {
-            animation: float 4s ease-in-out infinite;
-        }
-        
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
         }
-        
-        .sword {
-            filter: drop-shadow(0 0 15px #ffcc00);
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(rgba(10,10,31,0.7), rgba(20,10,40,0.85)),
+                        url('https://images.unsplash.com/photo-1616588587684-9b4e1e1e5e5f?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover;
         }
-        
-        .title-glow {
-            text-shadow: 
-                0 0 10px #ffcc00,
-                0 0 20px #ff6600,
-                0 0 40px #ff00aa;
-        }
-        
-        .fire-emblem {
-            background: linear-gradient(45deg, #8b0000, #ffd700);
+
+        .hero-content h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(3.5rem, 12vw, 10rem);
+            line-height: 0.85;
+            background: linear-gradient(135deg, #ffd700, #ffaa00, #ff4d00, #c026d3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(255,215,0,0.8);
+            animation: titleGlow 4s ease-in-out infinite alternate;
         }
+
+        .hero-content .name {
+            font-size: clamp(5rem, 16vw, 14rem);
+            font-weight: 900;
+            background: linear-gradient(180deg, #ffffff, #ffd700, #ff8800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: nameFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 40px #ffd700; }
+            to { text-shadow: 0 0 80px #ff00aa, 0 0 120px #ff4d00; }
+        }
+        @keyframes nameFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            letter-spacing: 0.5em;
+            color: #67e8f9;
+            margin: 20px 0 40px;
+            text-transform: uppercase;
+        }
+
+        /* Visual Gallery */
+        .visuals {
+            padding: 80px 20px;
+            background: #0f0b1f;
+            position: relative;
+            z-index: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid rgba(240, 192, 64, 0.4);
+            transition: all 0.4s;
+        }
+        .card:hover {
+            transform: scale(1.05) rotate(2deg);
+            border-color: var(--gold2);
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.5);
+        }
+
+        .card img, .card::before {
+            position: absolute;
+            inset: 0;
+            object-fit: cover;
+            transition: all 0.6s;
+        }
+        .card:hover img { transform: scale(1.15); }
+
+        .card-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 30px 20px 20px;
+            font-size: 1.4rem;
+            text-align: center;
+            font-family: 'Cinzel Decorative', cursive;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+            color: #ffd700;
+            letter-spacing: 0.3em;
+        }
+
+        .sword-left, .sword-right {
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.1;
+            z-index: 0;
+            animation: swordFloat 15s infinite linear;
+        }
+        .sword-left { left: 5%; top: 30%; transform: rotate(-30deg); }
+        .sword-right { right: 5%; top: 50%; transform: rotate(30deg); }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Background particles / fantasy overlay -->
-    <div class="fixed inset-0 pointer-events-none z-0 opacity-30">
-        <div class="absolute top-20 left-10 text-6xl ff-crystal">💎</div>
-        <div class="absolute top-40 right-20 text-5xl ff-crystal animation-delay-1000">🔥</div>
-        <div class="absolute bottom-32 left-1/3 text-7xl ff-crystal animation-delay-2000">🗡️</div>
-        <div class="absolute bottom-40 right-1/4 text-6xl ff-crystal">🛡️</div>
-    </div>
+<body>
 
-    <div class="relative z-10">
-        <!-- Header -->
-        <header class="border-b border-purple-500 bg-black/70 backdrop-blur-md fixed w-full z-50">
-            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="flex items-center gap-4">
-                    <span class="text-3xl">⚔️</span>
-                    <span class="text-xl font-bold tracking-widest text-yellow-300">LEGEND OF DAVID</span>
-                </div>
-                <div class="flex gap-8 text-sm">
-                    <a href="#" class="hover:text-yellow-300 transition">CRYSTAL</a>
-                    <a href="#" class="hover:text-yellow-300 transition">EMBLEM</a>
-                    <a href="#" class="hover:text-yellow-300 transition">QUEST</a>
-                </div>
+    <!-- Background -->
+    <div id="stars"></div>
+    <div id="crystals"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="sword-left">🗡️</div>
+        <div class="sword-right">🗡️</div>
+        
+        <div class="hero-content">
+            <p class="subtitle">✦ Légende Éveillée ✦</p>
+            <h1>JOYEUX<br>ANNIVERSAIRE</h1>
+            <div class="name">DAVID</div>
+            <p style="margin-top:30px; font-size:1.5rem; color:#a5b4fc;">Level Up • New Game +</p>
+        </div>
+    </section>
+
+    <!-- Visual Cards -->
+    <section class="visuals">
+        <div class="grid">
+            <div class="card">
+                <img src="https://picsum.photos/id/1015/800/600" alt="Final Fantasy">
+                <div class="card-label">💎 CRISTAL ULTIME</div>
             </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero-bg min-h-screen flex items-center justify-center pt-20">
-            <div class="max-w-5xl mx-auto text-center px-6">
-                <!-- Decorative swords -->
-                <div class="flex justify-center gap-12 mb-8 text-6xl">
-                    <div class="sword rotate-[-25deg]">🗡️</div>
-                    <div class="sword rotate-[25deg]">🗡️</div>
-                </div>
-                
-                <h1 class="text-7xl md:text-8xl font-bold title-glow mb-6 leading-none tracking-widest">
-                    JOYEUX<br>ANNIVERSAIRE
-                </h1>
-                
-                <div class="inline-block bg-black/80 border-4 border-yellow-400 px-12 py-6 mb-12">
-                    <span class="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-red-400 to-purple-400 fire-emblem">
-                        DAVID
-                    </span>
-                </div>
-                
-                <p class="text-2xl md:text-3xl text-yellow-200 mb-16 max-w-2xl mx-auto">
-                    Que ta nouvelle année soit pleine de victoires épiques,<br>de cristaux brillants et de feux sacrés !
-                </p>
-                
-                <!-- Action button -->
-                <button onclick="launchConfetti()" 
-                        class="px-10 py-5 bg-gradient-to-r from-purple-600 to-red-600 hover:from-red-600 hover:to-purple-600 text-white text-xl rounded-none border-4 border-yellow-400 transition transform hover:scale-110">
-                    COMMENCER LA QUÊTE →
-                </button>
+            <div class="card">
+                <img src="https://picsum.photos/id/201/800/600" alt="Fire Emblem">
+                <div class="card-label">🔥 EMBLÈME DE FEU</div>
             </div>
-        </section>
-
-        <!-- Visual Tribute Gallery -->
-        <section class="py-20 bg-black/60">
-            <div class="max-w-6xl mx-auto px-6">
-                <h2 class="text-center text-4xl mb-16 text-yellow-300 tracking-widest">ÉLÉMENTS LÉGENDAIRES</h2>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <!-- Card 1 -->
-                    <div class="group relative overflow-hidden border-2 border-purple-500 hover:border-yellow-400 transition">
-                        <div class="h-64 bg-[url('https://picsum.photos/id/1015/800/600')] bg-cover"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <div class="text-4xl mb-2">💎</div>
-                                <div class="text-xl">Cristal Ultime</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 2 -->
-                    <div class="group relative overflow-hidden border-2 border-red-700 hover:border-yellow-400 transition">
-                        <div class="h-64 bg-[url('https://picsum.photos/id/201/800/600')] bg-cover"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <div class="text-4xl mb-2">🔥</div>
-                                <div class="text-xl">Emblème de Feu</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 3 -->
-                    <div class="group relative overflow-hidden border-2 border-blue-600 hover:border-yellow-400 transition">
-                        <div class="h-64 bg-[url('https://picsum.photos/id/866/800/600')] bg-cover"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <div class="text-4xl mb-2">🛡️</div>
-                                <div class="text-xl">Bouclier Légendaire</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 4 -->
-                    <div class="group relative overflow-hidden border-2 border-amber-500 hover:border-yellow-400 transition">
-                        <div class="h-64 bg-[url('https://picsum.photos/id/1016/800/600')] bg-cover"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
-                            <div>
-                                <div class="text-4xl mb-2">🐦</div>
-                                <div class="text-xl">Chocobo d'Or</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/866/800/600" alt="Chocobo">
+                <div class="card-label">🐤 CHOCOBO DORÉ</div>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-12 border-t border-purple-900 bg-black">
-            <div class="max-w-6xl mx-auto px-6 text-center">
-                <div class="flex justify-center gap-10 text-4xl mb-8">
-                    <span>⚔️</span>
-                    <span>🧙</span>
-                    <span>🏰</span>
-                    <span>🔮</span>
-                </div>
-                <p class="text-purple-300">Fait avec passion pour un aventurier légendaire</p>
-                <p class="text-xs mt-8 text-purple-600">Final Fantasy • Fire Emblem • RPG Vibes</p>
+            <div class="card">
+                <img src="https://picsum.photos/id/1016/800/600" alt="Hero">
+                <div class="card-label">⚔️ HÉROS LÉGENDAIRE</div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </section>
 
-    <!-- Confetti Script -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <footer>
+        Que ton année soit remplie de victoires épiques et de cristaux brillants ✨<br>
+        Final Fantasy • Fire Emblem • RPG Forever
+    </footer>
+
     <script>
-        function launchConfetti() {
-            const colors = ['#ffcc00', '#ff0066', '#00ccff', '#aa00ff'];
-            
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: colors
-            });
-            
-            setTimeout(() => {
-                confetti({
-                    particleCount: 100,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.7 },
-                    colors: colors
-                });
-            }, 300);
-            
-            setTimeout(() => {
-                confetti({
-                    particleCount: 100,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.7 },
-                    colors: colors
-                });
-            }, 600);
+        // Stars
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 250; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
+            const size = Math.random() * 3 + 0.8;
+            s.style.cssText = `
+                width: ${size}px; height: ${size}px;
+                top: ${Math.random()*100}%; left: ${Math.random()*100}%;
+                animation-delay: ${Math.random()*5}s;
+            `;
+            stars.appendChild(s);
         }
-        
-        // Auto launch on load
-        window.onload = function() {
-            setTimeout(() => {
-                launchConfetti();
-            }, 800);
+
+        // Floating Crystals
+        const crystals = document.getElementById('crystals');
+        const crystalEmojis = ['💎','🔷','🧿','✨','🔮'];
+        for (let i = 0; i < 18; i++) {
+            const c = document.createElement('div');
+            c.className = 'crystal';
+            c.textContent = crystalEmojis[Math.floor(Math.random()*crystalEmojis.length)];
+            c.style.left = Math.random() * 100 + '%';
+            c.style.animationDuration = (Math.random() * 12 + 10) + 's';
+            c.style.animationDelay = '-' + Math.random() * 15 + 's';
+            crystals.appendChild(c);
         }
-        
-        // Tailwind script already included via CDN
+
+        // Confetti on click
+        document.addEventListener('click', () => {
+            confetti = window.confetti || (() => {});
+            confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 </html>
